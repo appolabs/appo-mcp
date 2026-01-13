@@ -14,7 +14,7 @@ interface ValidationResult {
 export async function validateSetup(
   args: Record<string, unknown>
 ): Promise<{ content: Array<{ type: "text"; text: string }> }> {
-  const { packageJson, tsConfig, sampleCode } = args as ValidateSetupArgs;
+  const { packageJson, tsConfig, sampleCode } = args as unknown as ValidateSetupArgs;
 
   const result: ValidationResult = {
     isValid: true,
@@ -159,7 +159,6 @@ function validateCodePatterns(code: string, result: ValidationResult): void {
   ];
 
   for (const method of asyncMethods) {
-    const regex = new RegExp(`\\.${method}\\(.*\\)(?!\\s*\\.then)(?!\\s*;?\\s*$)`, "g");
     if (code.includes(`.${method}(`) && !code.includes(`await`) && !code.includes(".then(")) {
       result.warnings.push(
         `The method \`${method}\` returns a Promise. Make sure to use \`await\` or \`.then()\`.`

@@ -335,7 +335,7 @@ const appo = getAppo();
 export async function diagnoseIssue(
   args: Record<string, unknown>
 ): Promise<{ content: Array<{ type: "text"; text: string }> }> {
-  const { symptom, feature, errorMessage, platform } = args as DiagnoseIssueArgs;
+  const { symptom, feature, errorMessage, platform } = args as unknown as DiagnoseIssueArgs;
 
   if (!symptom) {
     return {

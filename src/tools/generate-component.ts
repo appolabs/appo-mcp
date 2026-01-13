@@ -566,7 +566,7 @@ export async function generateComponent(
     componentName,
     styling = "tailwind",
     variant,
-  } = args as GenerateComponentArgs;
+  } = args as unknown as GenerateComponentArgs;
 
   if (!feature || !componentTemplates[feature]) {
     return {

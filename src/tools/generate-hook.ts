@@ -557,7 +557,7 @@ export function ${hookName}(): UseDeviceReturn {
 export async function generateHook(
   args: Record<string, unknown>
 ): Promise<{ content: Array<{ type: "text"; text: string }> }> {
-  const { feature, hookName, includeLoading = true, includeError = true } = args as GenerateHookArgs;
+  const { feature, hookName, includeLoading = true, includeError = true } = args as unknown as GenerateHookArgs;
 
   if (!feature || !hookTemplates[feature]) {
     return {

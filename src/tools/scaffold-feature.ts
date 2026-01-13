@@ -27,7 +27,7 @@ export async function scaffoldFeature(
     feature,
     directory = "src",
     includeTests = true,
-  } = args as ScaffoldFeatureArgs;
+  } = args as unknown as ScaffoldFeatureArgs;
 
   if (!feature || !featureDescriptions[feature]) {
     return {
@@ -101,12 +101,12 @@ ${getNativeFallbackInfo(feature)}`,
 
 function generateScaffoldFiles(
   feature: SdkFeature,
-  capitalizedFeature: string,
+  _capitalizedFeature: string,
   hookName: string,
   componentName: string,
   directory: string,
   includeTests: boolean,
-  requiresPermission: boolean
+  _requiresPermission: boolean
 ): Array<{ path: string; language: string; content: string }> {
   const files: Array<{ path: string; language: string; content: string }> = [];
 
@@ -121,7 +121,7 @@ function generateScaffoldFiles(
   files.push({
     path: `${directory}/hooks/${hookName}.ts`,
     language: "typescript",
-    content: generateHookFile(feature, hookName, requiresPermission),
+    content: generateHookFile(feature, hookName, _requiresPermission),
   });
 
   // Component file
@@ -272,7 +272,7 @@ export interface UseDeviceReturn {
 function generateHookFile(
   feature: SdkFeature,
   hookName: string,
-  requiresPermission: boolean
+  _requiresPermission: boolean
 ): string {
   return `import { useState, useCallback${feature === "network" || feature === "device" ? ", useEffect" : ""} } from 'react';
 import { getAppo } from '@appolabs/appo';

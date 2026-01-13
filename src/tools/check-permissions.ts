@@ -34,7 +34,7 @@ const featureApiMap: Record<PermissionFeature, { api: string; protectedMethods: 
 export async function checkPermissions(
   args: Record<string, unknown>
 ): Promise<{ content: Array<{ type: "text"; text: string }> }> {
-  const { code, feature } = args as CheckPermissionsArgs;
+  const { code, feature } = args as unknown as CheckPermissionsArgs;
 
   if (!code || !feature) {
     return {
@@ -81,7 +81,7 @@ function analyzePermissionPatterns(
     suggestions: [],
   };
 
-  const { api, protectedMethods } = featureApiMap[feature];
+  const { protectedMethods } = featureApiMap[feature];
 
   // Check for permission request
   if (code.includes("requestPermission")) {

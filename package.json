@@ -1,0 +1,64 @@
+{
+  "name": "@appolabs/appo-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for @appolabs/appo SDK integration - improves DX when turning web apps into mobile apps",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "appo-mcp": "./dist/index.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "vitest",
+    "prepublishOnly": "pnpm build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "appo",
+    "appolabs",
+    "mobile",
+    "react-native",
+    "webview",
+    "sdk",
+    "developer-experience"
+  ],
+  "author": "Appolabs",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/appolabs/appo-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/appolabs/appo-mcp/issues"
+  },
+  "homepage": "https://github.com/appolabs/appo-mcp#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^2.0.0"
+  }
+}
